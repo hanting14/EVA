@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/maps">
+        <file>easy.sav</file>
+    </qresource>
+</RCC>

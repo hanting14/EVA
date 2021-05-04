@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/pictures">
+        <file>flag.png</file>
+        <file>link.jpg</file>
+    </qresource>
+    <qresource prefix="/maps">
+        <file>easy.sav</file>
+        <file>medium.sav</file>
+        <file>hard.sav</file>
+    </qresource>
+</RCC>
