@@ -1,0 +1,61 @@
+﻿<Window x:Class="RobotWPF.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RobotWPF.View"
+        mc:Ignorable="d"
+        Title="Elszabadult robot" Height="{Binding Height, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Width="{Binding Width, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+    <Grid>
+        <DockPanel LastChildFill="True">
+            <Menu DockPanel.Dock="Top" Height="30">
+                <MenuItem Header="File" Command="{Binding NewGameCommand}">
+                    <MenuItem Header="New game" Command="{Binding NewGame}"></MenuItem>
+                    <MenuItem Header="Pause/Resume" Command="{Binding PauseGame}"></MenuItem>
+                    <MenuItem Header="Save" Command="{Binding SaveGame}"></MenuItem>
+                    <MenuItem Header="Load" Command="{Binding LoadGame}"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Difficulty" Command="{Binding NewGameCommand}">
+                    <MenuItem Header="Easy" Command="{Binding DifficultyEasy}"></MenuItem>
+                    <MenuItem Header="Medium" Command="{Binding DifficultyMedium}"></MenuItem>
+                    <MenuItem Header="Hard" Command="{Binding DifficultyHard}"></MenuItem>
+                </MenuItem>
+            </Menu>
+            <TextBlock Text="{Binding Time}" DockPanel.Dock="Top"></TextBlock>
+            <ItemsControl ItemsSource="{Binding Fields}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="{Binding TableSize}" Columns="{Binding TableSize}"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Command="{Binding RaiseWall}" Focusable="False">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Value}" Value="0">
+                                            <Setter Property="Background" Value="Red"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Value}" Value="1">
+                                            <Setter Property="Background" Value="Blue"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Value}" Value="2">
+                                            <Setter Property="Background" Value="Yellow"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Value}" Value="3">
+                                            <Setter Property="Background" Value="Green"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsRobot}" Value="true">
+                                            <Setter Property="Background" Value="Gray"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </DockPanel>
+    </Grid>
+</Window>
